@@ -4,6 +4,9 @@
     "flowtype",
     "jsdoc"
   ],
+  "env": {
+    "jest": true
+  },
   "extends": "airbnb",
   "rules": {
     "flowtype/define-flow-type": 1,
