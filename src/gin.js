@@ -10,7 +10,7 @@
   * @type {object}
   * @default
   */
-const tasks : Object = require('./tasks').tasks;
+const tasks : Object = require('./tasks');
 
 /**
  * @function gin
@@ -21,9 +21,10 @@ const tasks : Object = require('./tasks').tasks;
 function gin(...args : Array<mixed>) : mixed {
   const consoleArgs = args.slice(3);
   if (tasks[args[2]]) {
-    return tasks[args[2]](consoleArgs);
+    return tasks[args[2]](...consoleArgs);
   }
-  return void(0);
+  console.log('Could not proceed.');
+  return tasks.help();
 }
 
 // start gin from command line
