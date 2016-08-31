@@ -1,1 +1,1 @@
-exports.tasks = require('./lib/tasks').tasks;
+module.exports.tasks = require('./lib/tasks');
