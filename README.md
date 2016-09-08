@@ -8,7 +8,7 @@ Important: Better testcoverage...
 
 To install it:
 ```sh
-npm i --save ginjs -g
+npm install ginjs -g
 ```
 
 Usage:
