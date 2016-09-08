@@ -61,7 +61,9 @@ const tasks : Object = module.exports = {
     if (fs.existsSync(newProductLineDir)) {
       throw new Error('Dir already exists.');
     }
-    fs.copySync(path.join(skelPath, 'productline'), newProductLineDir);
+    fs.mkdirSync(newProductLineDir);
+    fs.mkdirSync(path.join(newProductLineDir, 'features'));
+    fs.mkdirSync(path.join(newProductLineDir, 'products'));
     tasks.createProduct('default');
     tasks.createFeature('gap');
   },
