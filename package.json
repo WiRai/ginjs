@@ -1,7 +1,7 @@
 {
-  "name": "gin-task",
-  "version": "1.0.0",
-  "description": "",
+  "name": "gin",
+  "version": "0.0.1",
+  "description": "A tool for building feature-oriented productlines with Node.js.",
   "main": "index.js",
   "scripts": {
     "compile": "babel -d lib/ src/;",
@@ -13,9 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.youtranslate.net/packages/gin-task.git"
+    "url": "https://github.com/WiRai/superimp.git"
   },
   "author": "",
+  "bin": {
+    "gin": "./bin/gin.js"
+  },
   "license": "",
   "devDependencies": {
     "babel-cli": "^6.7.7",
@@ -40,6 +43,6 @@
   "dependencies": {
     "fs-extra": "^0.30.0",
     "nunjucks": "^2.4.2",
-    "superimp": "^0.0.3"
+    "superimp": "^0.0.4"
   }
 }
