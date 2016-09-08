@@ -5,3 +5,8 @@ A tool for building feature-oriented productlines with Node.js.
 
 Todo: add documentation and info about related projects.
 Important: Better testcoverage...
+
+To install it:
+```sh
+npm i --save ginjs -g
+```
