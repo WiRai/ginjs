@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: gin.js</title>
+    <title>JSDoc: Source: featureman.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: gin.js</h1>
+    <h1 class="page-title">Source: featureman.js</h1>
 
     
 
@@ -28,35 +28,45 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* @flow */
 
-/**
- * @module module:gin
- */
-
- /**
-  * Import task module
-  * @constant
-  * @type {object}
-  * @default
-  */
-const tasks : Object = require('./tasks');
+const fs = require('fs-extra');
+const path = require('path');
 
 /**
- * @function gin
- * @description Console function to invoke tasks.
- * @param {Array} args - Console input.
- * @returns {any} Tasks can return anything.
+ * @module module:featureman
  */
-function gin(...args : Array&lt;mixed>) : mixed {
-  const consoleArgs = args.slice(3);
-  if (tasks[args[2]]) {
-    return tasks[args[2]](...consoleArgs);
+
+/**
+ * @function getFeatureList
+ * @description Get names of active features.
+ * @returns {Array} Featurenames - Array containing names of all active features.
+ */
+function getFeatureList(): Array&lt;string> {
+  if (!process.env.PRODUCT_DIR) {
+    return [];
   }
-  console.log('Could not proceed.');
-  return tasks.help();
+  const featureList = fs.readJSONSync(path.join(process.env.PRODUCT_DIR, 'features.json'));
+  return featureList;
 }
 
-// start gin from command line
-gin(...process.argv);
+/**
+ * @function getFeatures
+ * @description Get a list of all active feature-modules
+ * @returns {Array} Featurelist - Array containing all active feature-modules.
+ */
+function getFeatures(): Array&lt;Object> {
+  const features = [];
+  const featureList = getFeatureList();
+  featureList.forEach((elem: string) => {
+    // noFlow whatever...
+    features.push(require(elem)); // eslint-disable-line global-require
+  });
+  return features;
+}
+
+module.exports = {
+  getFeatures,
+  getFeatureList,
+};
 </code></pre>
         </article>
     </section>

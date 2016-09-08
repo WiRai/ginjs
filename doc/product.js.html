@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: gin.js</title>
+    <title>JSDoc: Source: product.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: gin.js</h1>
+    <h1 class="page-title">Source: product.js</h1>
 
     
 
@@ -28,35 +28,38 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* @flow */
 
-/**
- * @module module:gin
- */
-
- /**
-  * Import task module
-  * @constant
-  * @type {object}
-  * @default
-  */
-const tasks : Object = require('./tasks');
+const path = require('path');
+const fs = require('fs-extra');
 
 /**
- * @function gin
- * @description Console function to invoke tasks.
- * @param {Array} args - Console input.
- * @returns {any} Tasks can return anything.
+ * @module module:product
  */
-function gin(...args : Array&lt;mixed>) : mixed {
-  const consoleArgs = args.slice(3);
-  if (tasks[args[2]]) {
-    return tasks[args[2]](...consoleArgs);
-  }
-  console.log('Could not proceed.');
-  return tasks.help();
+
+/** Object representing the product.*/
+module.exports = {};
+
+if (!process.env.PRODUCT_DIR) {
+  throw new Error('No PRODUCT_DIR set.');
 }
 
-// start gin from command line
-gin(...process.argv);
+// Try to load the context...
+try {
+  module.exports.context = Object.freeze(
+    fs.readJSONSync(
+      path.join(
+        process.env.PRODUCT_DIR,
+        'context.json'
+      )
+    )
+  );
+} catch (e) {
+  throw new Error('Could not load context.json');
+}
+
+const functions = require('./functions');
+
+// Finally derive product...
+functions.deriveProduct();
 </code></pre>
         </article>
     </section>

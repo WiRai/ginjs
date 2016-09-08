@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: gin</title>
+    <title>JSDoc: Module: featureman</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: gin</h1>
+    <h1 class="page-title">Module: featureman</h1>
 
     
 
@@ -61,14 +61,14 @@
 
     
 
-    <h4 class="name" id="~gin"><span class="type-signature">(inner) </span>gin<span class="signature">(args)</span><span class="type-signature"> &rarr; {any}</span></h4>
+    <h4 class="name" id="~getFeatureList"><span class="type-signature">(inner) </span>getFeatureList<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
 
     
 
 
 
 <div class="description">
-    Console function to invoke tasks.
+    Get names of active features.
 </div>
 
 
@@ -77,55 +77,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>args</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Console input.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -161,7 +112,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="gin.js.html">gin.js</a>, <a href="gin.js.html#line9">line 9</a>
+        <a href="featureman.js.html">featureman.js</a>, <a href="featureman.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -188,7 +139,7 @@
 
         
 <div class="param-desc">
-    Tasks can return anything.
+    Featurenames - Array containing names of all active features.
 </div>
 
 
@@ -199,7 +150,111 @@
     </dt>
     <dd>
         
-<span class="param-type">any</span>
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~getFeatures"><span class="type-signature">(inner) </span>getFeatures<span class="signature">()</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Get a list of all active feature-modules
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="featureman.js.html">featureman.js</a>, <a href="featureman.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Featurelist - Array containing all active feature-modules.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
 
 
     </dd>
