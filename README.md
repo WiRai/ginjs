@@ -1,5 +1,5 @@
-# gin
-[![Build Status](https://travis-ci.org/WiRai/gin.svg?branch=master)](https://travis-ci.org/WiRai/gin)
+# ginjs
+[![Build Status](https://travis-ci.org/WiRai/ginjs.svg?branch=master)](https://travis-ci.org/WiRai/ginjs)
 
 A tool for building feature-oriented productlines with Node.js.
 
@@ -9,4 +9,9 @@ Important: Better testcoverage...
 To install it:
 ```sh
 npm i --save ginjs -g
+```
+
+Usage:
+```sh
+gin help
 ```
