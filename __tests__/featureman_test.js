@@ -1,10 +1,3 @@
-jest.unmock('fs-extra');
-jest.unmock('path');
-jest.unmock('os');
-jest.unmock('nunjucks');
-jest.unmock('../lib/tasks');
-jest.unmock('../lib/featureman');
-
 const fs = require('fs-extra');
 const path = require('path');
 const os = require('os');
