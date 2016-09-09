@@ -1,12 +1,13 @@
 /* @flow */
 
-const compose = require('superimp');
 const path = require('path');
 const fs = require('fs-extra');
+const nunjucks = require('nunjucks');
+const compose = require('superimp');
+const getFeatures = require('./featureman').getFeatures;
+
 const skelPath = path.join(__dirname, '../.skel');
 const templatePath = path.join(__dirname, '../.templates');
-const nunjucks = require('nunjucks');
-const getFeatures = require('./featureman').getFeatures;
 
 /**
  * @module module:tasks
