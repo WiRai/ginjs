@@ -7,3 +7,4 @@ doc
 jsdoc.json
 __tests__
 .travis.yml
+coverage
