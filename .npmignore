@@ -8,3 +8,6 @@ jsdoc.json
 __tests__
 .travis.yml
 coverage
+.codeclimate
+.csslintrc
+.eslintignore
