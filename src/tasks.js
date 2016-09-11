@@ -90,9 +90,10 @@ const tasks : Object = module.exports = {
     const functions = require('./functions');
 
     const newContext = Object.assign(
-      {},
+      functions.getContextTemplate(),
       fs.readJSONSync(
         path.join(
+          // noFlow
           process.env.PRODUCT_DIR,
           'context.json'
         )
