@@ -11,6 +11,12 @@ describe('Function module', () => {
     process.chdir(os.tmpdir());
     tasks.createProductLine('_ginjs-test-productline');
     process.env.PRODUCT_DIR = path.join(process.env.PRODUCTLINE_DIR, 'products', 'default');
+    /*
+     * Reset modules because tasks.createProductLine forces composition
+     * of functions module, but we change the features later dynamically.
+     * To get those features composed we need this pattern...
+     */
+    jest.resetModules();
     const gap = require('gap');
     gap.composables.functions.introduce_test = () => 'i introduced a function';
     gap.composables.functions.refine_deriveProduct = (original) => () => {
