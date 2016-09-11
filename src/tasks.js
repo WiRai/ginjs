@@ -49,6 +49,9 @@ const tasks : Object = module.exports = {
       'activate.njk', { PRODUCTLINE_DIR: process.env.PRODUCTLINE_DIR, PRODUCT_DIR }
     );
     fs.writeFileSync(path.join(PRODUCT_DIR, 'activate'), activate);
+    fs.mkdirSync(path.join(PRODUCT_DIR, 'DATA'));
+    process.env.PRODUCT_DIR = PRODUCT_DIR;
+    tasks.updateContext();
   },
   /**
    * @function createProductLine
@@ -65,8 +68,8 @@ const tasks : Object = module.exports = {
     fs.mkdirSync(newProductLineDir);
     fs.mkdirSync(path.join(newProductLineDir, 'features'));
     fs.mkdirSync(path.join(newProductLineDir, 'products'));
-    tasks.createProduct('default');
     tasks.createFeature('gap');
+    tasks.createProduct('default');
   },
   /**
    * @function help
@@ -80,6 +83,30 @@ const tasks : Object = module.exports = {
    * @returns {void} Void.
    */
   showProduct: (): void => console.log(require('./product')),
+  updateContext: () => {
+    if (!process.env.PRODUCT_DIR) {
+      throw new Error('No PRODUCT_DIR set.');
+    }
+    const functions = require('./functions');
+
+    const newContext = Object.assign(
+      {},
+      fs.readJSONSync(
+        path.join(
+          process.env.PRODUCT_DIR,
+          'context.json'
+        )
+      )
+    );
+    fs.writeJSONSync(
+      path.join(
+        // noFlow
+        process.env.PRODUCT_DIR,
+        'context.json'
+      ),
+      newContext
+    );
+  },
 };
 
 // get active features in a list
