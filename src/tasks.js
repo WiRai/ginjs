@@ -66,7 +66,7 @@ const tasks : Object = module.exports = {
     process.env.PATH = `${newProductLineDir}/node_modules/.bin:${process.env.PATH}`;
     // noFlow
     process.env.NODE_PATH = `${newProductLineDir}/features:${newProductLineDir}/node_modules:${process.env.NODE_PATH}`;
-    // Tp be sure new NODE_PATH is used:
+    // To be sure new NODE_PATH is used:
     // noFlow
     require('module').Module._initPaths();
     if (fs.existsSync(newProductLineDir)) {
