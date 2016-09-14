@@ -18,5 +18,6 @@ exclude_paths:
 - coverage/
 - doc/
 - lib/
+- src/**/*.test.js
 - node_modules/
 - __tests__/
