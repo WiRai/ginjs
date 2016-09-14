@@ -62,9 +62,12 @@ const tasks : Object = module.exports = {
   createProductLine: (name: string) => {
     const newProductLineDir: string = path.join(process.cwd(), name);
     process.env.PRODUCTLINE_DIR = newProductLineDir;
+    // noFlow
     process.env.PATH = `${newProductLineDir}/node_modules/.bin:${process.env.PATH}`;
+    // noFlow
     process.env.NODE_PATH = `${newProductLineDir}/features:${newProductLineDir}/node_modules:${process.env.NODE_PATH}`;
     // Tp be sure new NODE_PATH is used:
+    // noFlow
     require('module').Module._initPaths();
     if (fs.existsSync(newProductLineDir)) {
       throw new Error('Dir already exists.');
