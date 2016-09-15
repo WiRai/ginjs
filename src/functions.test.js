@@ -17,7 +17,7 @@ describe('Function module', () => {
     tasks.createProductLine('_ginjs-test-productline');
     process.env.PRODUCT_DIR = path.join(process.env.PRODUCTLINE_DIR, 'products', 'default');
     /*
-     * Reset modules because tasks.createProductLine forces composition
+     * Reset function module because tasks.createProductLine forces composition
      * of functions module, but we change the features later dynamically.
      * To get those features composed we need this pattern...
      */
