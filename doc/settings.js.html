@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: product.js</title>
+    <title>JSDoc: Source: settings.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: product.js</h1>
+    <h1 class="page-title">Source: settings.js</h1>
 
     
 
@@ -28,21 +28,25 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* @flow */
 
+const compose = require('superimp');
+const getFeatures = require('./featureman').getFeatures;
+
 /**
- * @module module:product
+ * @module module:settings
  */
+const settings : Object = module.exports = {};
 
-/** Object representing the product.*/
+// get active features in a list
+const features = getFeatures();
+const settingsList = [];
+features.forEach((feature: Object) => {
+  if (feature.composables.settings) {
+    settingsList.push(feature.composables.settings);
+  }
+});
 
-const product = {};
-module.exports = product;
-
-product.context = require('./context');
-
-const functions = require('./functions');
-
-// Finally derive product...
-functions.deriveProduct();
+// compose tasks for each feature on first import
+compose(...settingsList.reverse(), settings);
 </code></pre>
         </article>
     </section>
