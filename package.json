@@ -1,6 +1,6 @@
 {
   "name": "ginjs",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "A tool for building feature-oriented productlines with Node.js.",
   "main": "index.js",
   "scripts": {
