@@ -15,6 +15,7 @@ const functions : Object = module.exports = {
   deriveProduct: (): Object => {
     const product = require('./product'); // eslint-disable-line global-require
     const tasks = require('./tasks'); // eslint-disable-line global-require
+    const settings = require('./settings'); // eslint-disable-line global-require
 
     if (!process.env.PRODUCT_DIR) {
       throw new Error('No PRODUCT_DIR set.');
@@ -23,6 +24,8 @@ const functions : Object = module.exports = {
     product.functions = functions;
     // noFlow whatever...
     product.tasks = tasks;
+    // noFlow whaterver
+    product.settings = settings;
     return product;
   },
   getContextTemplate: () => {
