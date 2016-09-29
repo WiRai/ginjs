@@ -29,7 +29,7 @@ describe('Settings module', () => {
       'gap2',
     ]);
     // Because import of product forces composition of settings an we change gap and gap2 hot:
-    delete require.cache[require.resolve('ginjs')];
+    delete require.cache[require.resolve('../index')]; // ginjs
     delete require.cache[require.resolve('ginjs/lib/settings')];    
     const settings = require('../lib/settings');
     expect(settings.mySettings).to.be.true;
