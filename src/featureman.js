@@ -30,7 +30,7 @@ function getFeatures(): Array<Object> {
   const featureList = getFeatureList();
   featureList.forEach((elem: string) => {
     // noFlow whatever...
-    features.push(require(elem)); // eslint-disable-line global-require
+    features.push(require(elem)); // eslint-disable-line global-require, import/no-dynamic-require
   });
   return features;
 }
