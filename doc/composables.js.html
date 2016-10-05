@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: tasks.js</title>
+    <title>JSDoc: Source: composables.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: tasks.js</h1>
+    <h1 class="page-title">Source: composables.js</h1>
 
     
 
@@ -31,23 +31,38 @@
 const path = require('path');
 const fs = require('fs-extra');
 const nunjucks = require('nunjucks');
-const compose = require('superimp');
-const getFeatures = require('./featureman').getFeatures;
 
 const skelPath = path.join(__dirname, '../.skel');
 const templatePath = path.join(__dirname, '../.templates');
 
+const functionRegistry = require('./index').functions;
+const taskRegistry = require('./index').tasks;
+
+/**
+ * @module module:functions
+ */
+const functions = {
+  /**
+   * @function getContextTemplate
+   * @description Return context template as js obj.
+   * @returns {Object} Template - Object representing th context template.
+   */
+  introduce_getContextTemplate: (): Object => { // eslint-disable-line arrow-body-style
+    return {};
+  },
+};
+
 /**
  * @module module:tasks
  */
-const tasks : Object = module.exports = {
+const tasks = {
   /**
    * @function createFeature
    * @description Create new feature.
    * @param {string} featureName - Name of the new feature.
    * @returns {void} Void.
    */
-  createFeature: (featureName: string) => {
+  introduce_createFeature: (featureName: string) => {
     if (!process.env.PRODUCTLINE_DIR) {
       throw new Error('No PRODUCTLINE_DIR set.');
     }
@@ -63,7 +78,7 @@ const tasks : Object = module.exports = {
    * @param {string} productName - Name of the new product.
    * @returns {void} Void.
    */
-  createProduct: (productName: string) => {
+  introduce_createProduct: (productName: string) => {
     if (!process.env.PRODUCTLINE_DIR) {
       throw new Error('No PRODUCTLINE_DIR set.');
     }
@@ -79,7 +94,7 @@ const tasks : Object = module.exports = {
     fs.writeFileSync(path.join(PRODUCT_DIR, 'activate'), activate);
     fs.mkdirSync(path.join(PRODUCT_DIR, 'DATA'));
     process.env.PRODUCT_DIR = PRODUCT_DIR;
-    tasks.updateContext();
+    taskRegistry.updateContext();
   },
   /**
    * @function createProductLine
@@ -87,7 +102,7 @@ const tasks : Object = module.exports = {
    * @param {string} name - Name of the new productline.
    * @returns {void} Void.
    */
-  createProductLine: (name: string) => {
+  introduce_createProductLine: (name: string) => {
     const newProductLineDir: string = path.join(process.cwd(), name);
     process.env.PRODUCTLINE_DIR = newProductLineDir;
     // noFlow
@@ -96,36 +111,35 @@ const tasks : Object = module.exports = {
     process.env.NODE_PATH = `${newProductLineDir}/features:${newProductLineDir}/node_modules:${process.env.NODE_PATH}`;
     // To be sure new NODE_PATH is used:
     // noFlow
-    require('module').Module._initPaths();
+    require('module').Module._initPaths(); // eslint-disable-line global-require, no-underscore-dangle
+
     if (fs.existsSync(newProductLineDir)) {
       throw new Error('Dir already exists.');
     }
     fs.mkdirSync(newProductLineDir);
     fs.mkdirSync(path.join(newProductLineDir, 'features'));
     fs.mkdirSync(path.join(newProductLineDir, 'products'));
-    tasks.createFeature('gap');
-    tasks.createProduct('default');
+    taskRegistry.createFeature('gap');
+    taskRegistry.createProduct('default');
   },
   /**
    * @function help
    * @description List available tasks.
    * @returns {void} Void.
    */
-  help: (): void => console.log(tasks),
+  introduce_help: (): void => console.log(taskRegistry), // eslint-disable-line no-console
   /**
    * @function showProduct
    * @description Print product.
    * @returns {void} Void.
    */
-  showProduct: (): void => console.log(require('./product')),
-  updateContext: () => {
+  introduce_showProduct: (): void => console.log(require('./index').product), // eslint-disable-line global-require, no-console
+  introduce_updateContext: () => {
     if (!process.env.PRODUCT_DIR) {
       throw new Error('No PRODUCT_DIR set.');
     }
-    const functions = require('./functions');
-
     const newContext = Object.assign(
-      functions.getContextTemplate(),
+      functionRegistry.getContextTemplate(),
       fs.readJSONSync(
         path.join(
           // noFlow
@@ -145,17 +159,10 @@ const tasks : Object = module.exports = {
   },
 };
 
-// get active features in a list
-const features = getFeatures();
-const taskList = [];
-features.forEach((feature: Object) => {
-  if (feature.composables.tasks) {
-    taskList.push(feature.composables.tasks);
-  }
-});
-
-// compose tasks for each feature on first import
-compose(...taskList.reverse(), tasks);
+module.exports = {
+  functions,
+  tasks,
+};
 </code></pre>
         </article>
     </section>
@@ -166,13 +173,13 @@ compose(...taskList.reverse(), tasks);
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-featureman.html">featureman</a></li><li><a href="module-functions.html">functions</a></li><li><a href="module-gin.html">gin</a></li><li><a href="module-product.html">product</a></li><li><a href="module-settings.html">settings</a></li><li><a href="module-tasks.html">tasks</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-featureman.html">featureman</a></li><li><a href="module-functions.html">functions</a></li><li><a href="module-gin.html">gin</a></li><li><a href="module-tasks.html">tasks</a></li></ul><h3>Global</h3><ul><li><a href="global.html#register">register</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Sep 29 2016 23:30:56 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Oct 06 2016 01:02:15 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

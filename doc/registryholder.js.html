@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: registryholder.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: registryholder.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* @flow */
 
+const registry = {};
 
-    <h3> </h3>
+ /**
+  * @function register
+  * @description Register composable object.
+  * @param {string} name - Name of the new object.
+  * @returns {Object} Tasks can return anything.
+  */
+function register(name: string): Object {
+  if (name in registry) {
+    throw new Error(`${name} already in gin's registry`);
+  }
+  registry[name] = {};
+  return registry[name];
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = {
+  registry,
+  register,
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
