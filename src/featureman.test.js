@@ -47,6 +47,10 @@ describe('getFeatures', () => {
     // noFlow
     const gap = require('gap'); // eslint-disable-line import/no-unresolved, global-require, import/no-extraneous-dependencies
 
+    fs.writeJSONSync(path.join(process.env.PRODUCT_DIR || '', 'features.json'), [
+      './index', // to ensure ginjs is just loaded once through path
+      'gap',
+    ]);
     const featureList = getFeatures();
     // eslint-disable-next-line no-unused-expressions
     expect(gap === featureList[1]).to.be.true;
