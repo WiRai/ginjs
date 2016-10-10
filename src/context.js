@@ -1,7 +1,6 @@
 /* @flow */
 
 const path = require('path');
-const fs = require('fs-extra');
 
 if (!process.env.PRODUCT_DIR) {
   throw new Error('No PRODUCT_DIR set.');
@@ -10,7 +9,8 @@ if (!process.env.PRODUCT_DIR) {
 // Try to load the context...
 try {
   module.exports = Object.freeze(
-    fs.readJSONSync(
+    // noFlow
+    require( // eslint-disable-line import/no-dynamic-require, global-require
       path.join(
         process.env.PRODUCT_DIR,
         'context.json'

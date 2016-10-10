@@ -2,20 +2,22 @@
 
 const registryHolder = require('./registryholder');
 
+module.exports.register = registryHolder.register;
+
 // noFlow
 registryHolder.registry.product = registryHolder.register('product');
-// noFlow
-module.exports.settings = registryHolder.registry.product.settings = registryHolder.register('settings');
-// noFlow
-module.exports.functions = registryHolder.registry.product.functions = registryHolder.register('functions');
-// noFlow
-module.exports.tasks = registryHolder.registry.product.tasks = registryHolder.register('tasks');
+
+module.exports.settings = registryHolder.register('settings');
+module.exports.functions = registryHolder.register('functions');
+module.exports.tasks = registryHolder.register('tasks');
 
 module.exports.featureman = require('./featureman');
 module.exports.composables = require('./composables');
 
-// eslint-disable-next-line global-require
-// module.exports.context = require('./context');
+if (process.env.PRODUCT_DIR) {
+  // noFlow
+  module.exports.context = registryHolder.registry.product.context = require('./context'); // eslint-disable-line global-require
+}
 // noFlow
 module.exports.product = registryHolder.registry.product; // eslint-disable-line global-require
 
@@ -30,26 +32,33 @@ if (!features.length) {
     composables: module.exports.composables,
   });
 }
-const functionList = [];
-const taskList = [];
-const settingsList = [];
+const composableHolder = {};
 
 // collect settings, functions, tasks to compose
 features.forEach((feature: Object) => {
   if (feature.composables) {
-    if (feature.composables.settings) {
-      settingsList.push(feature.composables.settings);
-    }
-    if (feature.composables.functions) {
-      functionList.push(feature.composables.functions);
-    }
-    if (feature.composables.tasks) {
-      taskList.push(feature.composables.tasks);
-    }
+    Object.keys(feature.composables).forEach((elem: string) => {
+      if (!(elem in registryHolder.registry)) {
+        module.exports[elem] = registryHolder.register(elem);
+      }
+      if (!(elem in composableHolder)) {
+        composableHolder[elem] = [];
+      }
+      composableHolder[elem].push(feature.composables[elem]);
+    });
   }
 });
 
-// compose composables for each feature on ginjs import
+Object.keys(composableHolder).forEach((key: string) => {
+  module.exports.product[key] = compose(
+    true,
+    ...composableHolder[key].reverse(),
+    registryHolder.registry[key]
+  );
+});
+
+/* compose composables for each feature on ginjs import
 compose(true, ...settingsList.reverse(), module.exports.settings);
 compose(true, ...functionList.reverse(), module.exports.functions);
 compose(true, ...taskList.reverse(), module.exports.tasks);
+*/
