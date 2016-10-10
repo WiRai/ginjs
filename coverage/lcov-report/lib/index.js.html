@@ -25,14 +25,14 @@
         <span class='fraction'>28/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">58.33% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/12</span>
+        <span class='fraction'>7/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">92.59% </span>
@@ -99,25 +99,32 @@
 54
 55
 56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+57
+58
+59
+60
+61
+62</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,47 +141,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 function _toConsumableArray(arr) { <span class="missing-if-branch" title="else path not taken" >E</span>if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i &lt; arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { <span class="cstat-no" title="statement not covered" >return Array.from(arr); } }</span>
 &nbsp;
 var registryHolder = require('./registryholder');
 &nbsp;
+module.exports.register = registryHolder.register;
+&nbsp;
 // noFlow
 registryHolder.registry.product = registryHolder.register('product');
-// noFlow
-module.exports.settings = registryHolder.registry.product.settings = registryHolder.register('settings');
-// noFlow
-module.exports.functions = registryHolder.registry.product.functions = registryHolder.register('functions');
-// noFlow
-module.exports.tasks = registryHolder.registry.product.tasks = registryHolder.register('tasks');
+&nbsp;
+module.exports.settings = registryHolder.register('settings');
+module.exports.functions = registryHolder.register('functions');
+module.exports.tasks = registryHolder.register('tasks');
 &nbsp;
 module.exports.featureman = require('./featureman');
 module.exports.composables = require('./composables');
 &nbsp;
-// eslint-disable-next-line global-require
-// module.exports.context = require('./context');
+<span class="missing-if-branch" title="else path not taken" >E</span>if (process.env.PRODUCT_DIR) {
+  // noFlow
+  module.exports.context = registryHolder.registry.product.context = require('./context'); // eslint-disable-line global-require
+}
 // noFlow
 module.exports.product = registryHolder.registry.product; // eslint-disable-line global-require
 &nbsp;
@@ -189,35 +201,38 @@ var features = getFeatures();
     composables: module.exports.composables
   });
 }
-var functionList = [];
-var taskList = [];
-var settingsList = [];
+var composableHolder = {};
 &nbsp;
 // collect settings, functions, tasks to compose
 features.forEach(function (feature) {
   <span class="missing-if-branch" title="else path not taken" >E</span>if (feature.composables) {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (feature.composables.settings) {
-<span class="cstat-no" title="statement not covered" >      settingsList.push(feature.composables.settings);</span>
-    }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (feature.composables.functions) {
-      functionList.push(feature.composables.functions);
-    }
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (feature.composables.tasks) {
-      taskList.push(feature.composables.tasks);
-    }
+    Object.keys(feature.composables).forEach(function (elem) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!(elem in registryHolder.registry)) {
+<span class="cstat-no" title="statement not covered" >        module.exports[elem] = registryHolder.register(elem);</span>
+      }
+      if (!(elem in composableHolder)) {
+        composableHolder[elem] = [];
+      }
+      composableHolder[elem].push(feature.composables[elem]);
+    });
   }
 });
 &nbsp;
-// compose composables for each feature on ginjs import
-compose.apply(undefined, [true].concat(_toConsumableArray(settingsList.reverse()), [module.exports.settings]));
-compose.apply(undefined, [true].concat(_toConsumableArray(functionList.reverse()), [module.exports.functions]));
-compose.apply(undefined, [true].concat(_toConsumableArray(taskList.reverse()), [module.exports.tasks]));</pre></td></tr>
+Object.keys(composableHolder).forEach(function (key) {
+  module.exports.product[key] = compose.apply(undefined, [true].concat(_toConsumableArray(composableHolder[key].reverse()), [registryHolder.registry[key]]));
+});
+&nbsp;
+/* compose composables for each feature on ginjs import
+compose(true, ...settingsList.reverse(), module.exports.settings);
+compose(true, ...functionList.reverse(), module.exports.functions);
+compose(true, ...taskList.reverse(), module.exports.tasks);
+*/</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 06 2016 01:02:11 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 10 2016 17:00:47 GMT+0200 (CEST)
 </div>
 </div>
 <script src="../prettify.js"></script>
