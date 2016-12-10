@@ -61,7 +61,7 @@ const tasks = {
     fs.copySync(path.join(skelPath, 'product'), PRODUCT_DIR);
     nunjucks.configure(templatePath, { autoescape: true });
     const activate = nunjucks.render(
-      'activate.njk', { PRODUCTLINE_DIR: process.env.PRODUCTLINE_DIR, PRODUCT_DIR }
+      'activate.njk', { PRODUCTLINE_DIR: process.env.PRODUCTLINE_DIR, PRODUCT_DIR },
     );
     fs.writeFileSync(path.join(PRODUCT_DIR, 'activate'), activate);
     fs.mkdirSync(path.join(PRODUCT_DIR, 'DATA'));
@@ -116,17 +116,17 @@ const tasks = {
         path.join(
           // noFlow
           process.env.PRODUCT_DIR,
-          'context.json'
-        )
-      )
+          'context.json',
+        ),
+      ),
     );
     fs.writeJSONSync(
       path.join(
         // noFlow
         process.env.PRODUCT_DIR,
-        'context.json'
+        'context.json',
       ),
-      newContext
+      newContext,
     );
   },
 };

@@ -31,7 +31,7 @@ describe('Function module', () => {
 
     gap.composables.functions.introduce_test = (): string => 'i introduced a function';
     gap.composables.functions.refine_getContextTemplate = (
-      original: Function
+      original: Function,
     ): Function => (): Object => {
       const tmpl = original();
       tmpl.refined = true;

@@ -13,9 +13,9 @@ try {
     require( // eslint-disable-line import/no-dynamic-require, global-require
       path.join(
         process.env.PRODUCT_DIR,
-        'context.json'
-      )
-    )
+        'context.json',
+      ),
+    ),
   );
 } catch (e) {
   throw new Error('Could not load context.json');

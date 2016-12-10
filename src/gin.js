@@ -18,7 +18,7 @@ const tasks : Object = require('./index').tasks;
  * @param {...strings} args - Console input.
  * @returns {any} Tasks can return anything.
  */
-function gin(...args: Array<mixed>) : mixed {
+function gin(...args: Array<mixed>): mixed {
   const consoleArgs = args.slice(3);
   if (tasks[args[2]]) {
     return tasks[args[2]](...consoleArgs);

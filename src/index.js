@@ -53,7 +53,7 @@ Object.keys(composableHolder).forEach((key: string) => {
   module.exports.product[key] = compose(
     true,
     ...composableHolder[key].reverse(),
-    registryHolder.registry[key]
+    registryHolder.registry[key],
   );
 });
 
