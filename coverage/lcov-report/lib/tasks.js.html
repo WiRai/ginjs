@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.57% </span>
+        <span class="strong">19.15% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/46</span>
+        <span class='fraction'>9/47</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/12</span>
+        <span class='fraction'>0/14</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">19.57% </span>
+        <span class="strong">19.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/46</span>
+        <span class='fraction'>9/47</span>
       </div>
     </div>
   </div>
@@ -227,19 +227,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,12 +245,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,7 +336,9 @@ var tasks = {
 <span class="cstat-no" title="statement not covered" >    require('module').Module._initPaths(); // eslint-disable-line global-require, no-underscore-dangle</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (fs.existsSync(newProductLineDir)) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new Error('Dir already exists.');</span>
+<span class="cstat-no" title="statement not covered" >      if (fs.readdirSync(newProductLineDir).length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('Dir already exists.');</span>
+      }
     }
 <span class="cstat-no" title="statement not covered" >    fs.mkdirSync(newProductLineDir);</span>
 <span class="cstat-no" title="statement not covered" >    fs.mkdirSync(path.join(newProductLineDir, 'features'));</span>
@@ -364,9 +366,7 @@ var tasks = {
 <span class="cstat-no" title="statement not covered" >    if (!process.env.PRODUCT_DIR) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error('No PRODUCT_DIR set.');</span>
     }
-    v</span>ar newContext = <span class="cstat-no" title="statement not covered" >Object.assign(functionRegistry.getContextTemplate(), fs.readJSONSync(path.join(
-    // noFlow
-    process.env.PRODUCT_DIR, 'context.json')));
+    v</span>ar newContext = <span class="cstat-no" title="statement not covered" >Object.assign(functionRegistry.getContextTemplate(), require('./context'));
 <span class="cstat-no" title="statement not covered" >    fs.writeJSONSync(path.join(</span>
     // noFlow
     process.env.PRODUCT_DIR, 'context.json'), newContext);
@@ -379,7 +379,7 @@ module.exports = tasks;</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Dec 26 2016 00:00:48 GMT+0100 (CET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Dec 26 2016 00:46:42 GMT+0100 (CET)
 </div>
 </div>
 <script src="../prettify.js"></script>
