@@ -11,20 +11,6 @@ const functionRegistry = require('./index').functions;
 const taskRegistry = require('./index').tasks;
 
 /**
- * @module module:functions
- */
-const functions = {
-  /**
-   * @function getContextTemplate
-   * @description Return context template as js obj.
-   * @returns {Object} Template - Object representing th context template.
-   */
-  introduce_getContextTemplate: (): Object => { // eslint-disable-line arrow-body-style
-    return {};
-  },
-};
-
-/**
  * @module module:tasks
  */
 const tasks = {
@@ -131,7 +117,4 @@ const tasks = {
   },
 };
 
-module.exports = {
-  functions,
-  tasks,
-};
+module.exports = tasks;

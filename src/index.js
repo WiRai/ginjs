@@ -12,7 +12,11 @@ module.exports.functions = registryHolder.register('functions');
 module.exports.tasks = registryHolder.register('tasks');
 
 module.exports.featureman = require('./featureman');
-module.exports.composables = require('./composables');
+
+module.exports.composables = {
+  tasks: require('./tasks'), // eslint-disable-line global-require
+  functions: require('./functions'), // eslint-disable-line global-require
+};
 
 if (process.env.PRODUCT_DIR) {
   // noFlow
@@ -56,9 +60,3 @@ Object.keys(composableHolder).forEach((key: string) => {
     registryHolder.registry[key],
   );
 });
-
-/* compose composables for each feature on ginjs import
-compose(true, ...settingsList.reverse(), module.exports.settings);
-compose(true, ...functionList.reverse(), module.exports.functions);
-compose(true, ...taskList.reverse(), module.exports.tasks);
-*/
