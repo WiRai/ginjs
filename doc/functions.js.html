@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: gin.js</title>
+    <title>JSDoc: Source: functions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: gin.js</h1>
+    <h1 class="page-title">Source: functions.js</h1>
 
     
 
@@ -26,38 +26,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* @flow */
+            <pre class="prettyprint source linenums"><code>const path = require('path');
 
 /**
- * @module module:gin
+ * @module module:functions
  */
+const functions = {
+  /**
+   * @function getContextTemplate
+   * @description Return context template as js obj.
+   * @returns {Object} Template - Object representing th context template.
+   */
+  introduce_getContextTemplate: (): Object => { // eslint-disable-line arrow-body-style
+    if (!process.env.PRODUCT_DIR) {
+      throw new Error('No PRODUCT_DIR set.');
+    }
+    return {
+      DATA_DIR: path.join(process.env.PRODUCT_DIR, 'data'),
+    };
+  },
+};
 
- /**
-  * Import task module
-  * @constant
-  * @type {object}
-  * @default
-  */
-const tasks : Object = require('./index').tasks;
-
-/**
- * @function gin
- * @description Console function to invoke tasks.
- * @param {...strings} args - Console input.
- * @returns {any} Tasks can return anything.
- */
-function gin(...args: Array&lt;mixed>): mixed {
-  const consoleArgs = args.slice(3);
-  if (tasks[args[2]]) {
-    return tasks[args[2]](...consoleArgs);
-  }
-  // eslint-disable-next-line no-console
-  console.log('Could not proceed.');
-  return tasks.help();
-}
-
-// start gin from command line
-gin(...process.argv);
+module.exports = functions;
 </code></pre>
         </article>
     </section>
