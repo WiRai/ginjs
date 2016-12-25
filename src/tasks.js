@@ -99,13 +99,7 @@ const tasks = {
     }
     const newContext = Object.assign(
       functionRegistry.getContextTemplate(),
-      fs.readJSONSync(
-        path.join(
-          // noFlow
-          process.env.PRODUCT_DIR,
-          'context.json',
-        ),
-      ),
+      require('./context'), //eslint-disable-line global-require
     );
     fs.writeJSONSync(
       path.join(
