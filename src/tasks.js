@@ -50,7 +50,6 @@ const tasks = {
       'activate.njk', { PRODUCTLINE_DIR: process.env.PRODUCTLINE_DIR, PRODUCT_DIR },
     );
     fs.writeFileSync(path.join(PRODUCT_DIR, 'activate'), activate);
-    fs.mkdirSync(path.join(PRODUCT_DIR, 'DATA'));
     process.env.PRODUCT_DIR = PRODUCT_DIR;
     fs.mkdirSync(path.join(PRODUCT_DIR, 'data'));
     taskRegistry.updateContext();
