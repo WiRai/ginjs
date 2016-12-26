@@ -73,11 +73,16 @@ const tasks = {
     require('module').Module._initPaths(); // eslint-disable-line global-require, no-underscore-dangle
 
     if (fs.existsSync(newProductLineDir)) {
-      if (fs.readdirSync(newProductLineDir).length > 0) {
-        throw new Error('Dir already exists.');
-      }
+      const dirContentList = fs.readdirSync(newProductLineDir);
+      const allowedContent = ['node_modules', 'package.json'];
+      dirContentList.forEach((elem: String) => {
+        if (allowedContent.indexOf(elem) === -1) {
+          throw new Error('Dir already has unexpected content.');
+        }
+      });
+    } else {
+      fs.mkdirSync(newProductLineDir);
     }
-    fs.mkdirSync(newProductLineDir);
     fs.mkdirSync(path.join(newProductLineDir, 'features'));
     fs.mkdirSync(path.join(newProductLineDir, 'products'));
     taskRegistry.createFeature('gap');
