@@ -47,7 +47,7 @@ const tasks = {
     fs.copySync(path.join(skelPath, 'product'), PRODUCT_DIR);
     nunjucks.configure(templatePath, { autoescape: true });
     const activate = nunjucks.render(
-      'activate.njk', { PRODUCTLINE_DIR: process.env.PRODUCTLINE_DIR, PRODUCT_DIR },
+      'activate.njk', {},
     );
     fs.writeFileSync(path.join(PRODUCT_DIR, 'activate'), activate);
     process.env.PRODUCT_DIR = PRODUCT_DIR;

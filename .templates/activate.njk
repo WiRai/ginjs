@@ -1,5 +1,6 @@
 # This file must be used with "source activate" *from bash*
 # you cannot run it directly
+BASE_DIR=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
 
 deactivate () {
     # reset old environment variables
@@ -38,10 +39,10 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-PRODUCTLINE_DIR="{{PRODUCTLINE_DIR}}"
+PRODUCTLINE_DIR=`dirname $(dirname "$BASE_DIR")`
 export PRODUCTLINE_DIR
 
-PRODUCT_DIR="{{PRODUCT_DIR}}"
+PRODUCT_DIR="$BASE_DIR"
 export PRODUCT_DIR
 
 _OLD_PATH="$PATH"
