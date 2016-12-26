@@ -8,15 +8,33 @@
 
 A tool for building feature-oriented productlines with Node.js.
 
-Todo: add documentation and info about related projects.
+Todo: Add documentation and info about related projects.
 Important: Better testcoverage...
 
-To install it:
+To start build a productline:
+
 ```sh
-npm install ginjs -g
+mkdir myProductlineDir
+cd myProductlineDir
+npm init
+npm install --save ginjs
+node_modules/.bin/gin createProductLine .
 ```
 
-Usage:
+You should now have a first productline in myProductlineDir.
+To activate your first product cd to products/default and source the activate script through
+
+```sh
+. activate
+```
+
+Now you have the gin command in the context of the selected product in your path.
+
+Just try:
 ```sh
 gin help
 ```
+
+You find a dummy feature called gap in the features folder, feature selection is done through features.json in a products folder, e.g. products/default.
+
+More information will follow...
