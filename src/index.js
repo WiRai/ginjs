@@ -25,7 +25,7 @@ if (process.env.PRODUCT_DIR) {
 // noFlow
 module.exports.product = registryHolder.registry.product; // eslint-disable-line global-require
 
-const compose = require('superimp');
+const Composer = require('superimp');
 
 const getFeatures = module.exports.featureman.getFeatures;
 
@@ -54,9 +54,6 @@ features.forEach((feature: Object) => {
 });
 
 Object.keys(composableHolder).forEach((key: string) => {
-  module.exports.product[key] = compose(
-    true,
-    ...composableHolder[key].reverse(),
-    registryHolder.registry[key],
-  );
+  const composer = new Composer(registryHolder.registry[key], composableHolder[key]);
+  module.exports.product[key] = composer.compose();
 });
